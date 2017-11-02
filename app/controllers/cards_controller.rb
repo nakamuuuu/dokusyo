@@ -11,7 +11,7 @@ class CardsController < ApplicationController
 
   def add
     if request.post? then
-      card.create(card_params)
+      Card.create(card_params)
       goback
     else
       @card = Card.new
@@ -31,14 +31,13 @@ class CardsController < ApplicationController
     goback
   end
 
+  def goback
+    redirect_to '/cards'
+  end
+
   private
   def card_params
     params.require(:card).permit(:title, :author, :price, :publisher, :memo)
   end
 
-  private
-  def goback
-    redirect_to '/cards'
-  end
-  
 end
